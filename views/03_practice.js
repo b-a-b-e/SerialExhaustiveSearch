@@ -15,18 +15,19 @@ var initPracticeView = function(CPT) {
 	probe: exp.data.practice_trials[CPT].probe
     }));
 	
-    // how long stimulus is shown for
-    var showTime = 3000;
+    // how long each digit is shown for
+    var showTime = 1200;
+    // time between each digit
+    var blinkTime = 50;
     // time between stimulus and probe
-    var blinkTime = 1000;
+    var pauseTime = 2000;
     var dateStart, rt
+    function displayDigit(digit){
+	    $('#stimulustext').text(stimulus[digit])
     $('#probe').hide()
-    setTimeout(function() {
-        $('#stimulus').hide();
-    }, showTime); // <-- time in milliseconds
-    setTimeout(function() {
-        $('#probe').show();
-    }, showTime + blinkTime); // <-- time in milliseconds
-
+    displayDigit(stimulus[0]
+    for (digit = 1; digit < stimulus.length; digit++) {
+        setTimeout(displayDigit(stimulus[digit]), showTime)
+    }
     return view;
 };
