@@ -25,7 +25,7 @@ var initPracticeView = function(CPT) {
     function displayDigit(digit){
 	    $('#stimulustext').text(stimulus[digit])
     $('#probe').hide()
-    displayDigit(stimulus[0]
+    displayDigit(stimulus[0])
     for (digit = 1; digit < stimulus.length; digit++) {
         setTimeout(displayDigit(stimulus[digit]), showTime)
     }
