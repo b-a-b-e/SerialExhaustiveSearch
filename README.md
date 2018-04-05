@@ -1,6 +1,11 @@
 # SerialExhaustiveSearch
 Implementation of SES experiment
 
+Experiment structure
+---
+- instructions
+- practice trial x 24
+- main trial x 144
 
 Trial structure
 ---
