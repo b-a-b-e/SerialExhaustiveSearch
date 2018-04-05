@@ -11,11 +11,15 @@ Trial structure
 Response
 ---
 'k' = test digit in sequence
+
 'd' = test digit not in sequence
 
 Data to record
 ---
 correctness (combination of response and trial-type)
+
 trial type (test digit *present* or *absent*)
+
 reaction time (from display of test digit to response keypress)
+
 position of test digit in sequence
