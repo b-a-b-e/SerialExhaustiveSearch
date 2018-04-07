@@ -58,6 +58,7 @@ var initPracticeView = function(CPT) {
     // listen for key press and record response to probe
     addEventListener('keydown', function(event) {
         if(event.keyCode == 68 && probeQuestion === true) {
+            probeQuestion = false
             RT = Date.now() - startingTime
             trial_data = {
                 trial_type: trial_type,
@@ -69,6 +70,7 @@ var initPracticeView = function(CPT) {
             exp.findNextView()
         }
         else if(event.keyCode == 75 && probeQuestion === true) {
+            probeQuestion = false
             RT = Date.now() - startingTime
             trial_data = {
                 trial_type: "main",
