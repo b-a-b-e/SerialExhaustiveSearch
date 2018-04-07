@@ -2,7 +2,7 @@ config_views.instructions = {
     // instruction's title
     "title": "Instructions",
     // instruction's text
-    "text": "On each trial, a sequence of digits will appear, one at a time. Memorize these digits. Afterwards, a single digit will appear. You are to answer whether this number appeared in the list or not. We start with two practice trials.",
+    "text": "On each trial, a list of numbers will appear for a few moments. Memorize these numbers. Afterwards, a single number will appear. You are to answer whether this number appeared in the list or not. We start with two practice trials.",
     // instuction's slide proceeding button text
     "buttonText": "Go to practice trial"
 };
