@@ -1,5 +1,5 @@
 config_views.practice = {
-    "title": "Practice trial"
+    "title": "Practice trial: d = present, k = absent"
 };
 
 
@@ -59,26 +59,10 @@ var initPracticeView = function(CPT) {
     addEventListener('keydown', function(event) {
         if(event.keyCode == 68 && probeQuestion === true) {
             probeQuestion = false
-            RT = Date.now() - startingTime
-            trial_data = {
-                trial_type: trial_type,
-                trial_number: CPT+1,
-                response: 'd',
-                RT: RT
-            }
-            exp.data.out.push(trial_data)
             exp.findNextView()
         }
         else if(event.keyCode == 75 && probeQuestion === true) {
             probeQuestion = false
-            RT = Date.now() - startingTime
-            trial_data = {
-                trial_type: "main",
-                trial_number: CPT+1,
-                response: 'k',
-                RT: RT
-            }
-            exp.data.out.push(trial_data)
             exp.findNextView()
         }
     })
