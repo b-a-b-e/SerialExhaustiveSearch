@@ -32,6 +32,12 @@ var initTrialView = function(CT) {
 
     var probeQuestion = false
 
+    // make list of indices for stimulus list
+    var digits = [];
+    for (var i = 0; i < stimulus.length; i++) {
+        digits.push(i);
+    }
+
     // shows one digit in the sequence
     function displayDigit(digit) {
         $('#stimulustext').text(stimulus[digit])
@@ -44,7 +50,7 @@ var initTrialView = function(CT) {
 
     // shows the probe digit and allow response after specified delay
     function displayProbe(delay) {
-        setTimeout(function() {$('#stimulustext').text('x')}, delay)
+        setTimeout(function() {$('#stimulustext').text('·')}, delay)
         setTimeout(function() {$('#stimulustext').text(probe)
                                probeQuestion = true}, delay + showTime)
     }
@@ -54,10 +60,6 @@ var initTrialView = function(CT) {
         setTimeout(function() {displayDigit(digit)}, (showTime + blinkTime) * digit + blinkTime)
         setTimeout(clearDisplay, (showTime + blinkTime) * (digit + 1))
     }
-
-    function feedback(message, delay) {
-        setTimeout(function() {$('#stimulustext').text(message), delay)
-                  }
 
     // listen for key press and record response to probe
     addEventListener('keydown', function(event) {
@@ -93,12 +95,6 @@ var initTrialView = function(CT) {
 
     // start with probe hidden
     $('#probe').hide()
-
-    // make list of indices for stimulus list
-    var digits = [];
-    for (var i = 0; i < stimulus.length; i++) {
-        digits.push(i);
-    }
 
     // get time from start
     startingTime = Date.now() + probeDelay
