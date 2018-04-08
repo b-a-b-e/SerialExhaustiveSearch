@@ -1,18 +1,9 @@
 import numpy as np
 
-sequences = []
-for i1 in range(0, 10):
-    sequences.append([i1])
-    for i2 in range(0, 10):
-        sequences.append(list(set([i1, i2])))
-        for i3 in range(0, 10):
-            sequences.append(list(set([i1, i2, i3])))
-            for i4 in range(0, 10):
-                sequences.append(list(set([i1, i2, i3, i4])))
-                for i5 in range(0, 10):
-                    sequences.append(list(set([i1, i2, i3, i4, i5])))
-                    for i6 in range(0, 10):
-                        sequences.append(list(set([i1, i2, i3, i4, i5, i6])))
+def random_trial():
+    length = np.random.randint(1, high = 7)
+    sequence = list(np.random.choice([i for i in range(10)], size = length, replace=False))
+    return sequence
 
 def set_probe(trial):
     present = np.random.choice([True, False])
@@ -25,7 +16,7 @@ def set_probe(trial):
     return probe, trial_type
 
 def make_trials(number):
-    seq = list(np.random.choice(sequences, number))
+    seq = [random_trial() for i in range(number)]
     trials = []
     for i in seq:
         probe, trial_type = set_probe(i)
