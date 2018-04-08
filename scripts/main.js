@@ -3,38 +3,43 @@
 var prepareData = function() {
 
     // this should ideally be read in from a separate file
-    var trials_raw = [
-        {stimulus: [1,6,9,8], probe: "7", trial_type: 'absent'},
-	{stimulus: [5,2,8,1,3], probe: "4", trial_type: 'absent'},
-    ];
+    function generateTrials(number) {
 
-    // this should ideally be read in from a separate file
-    var practice_trials = [
-        {stimulus: [0, 4, 5], probe: "4", trial_type: 'present'},
-        {stimulus: [0, 1, 3, 4, 5, 9], probe: "6", trial_type: 'absent'},
-        {stimulus: [0, 9, 1, 7], probe: 0, trial_type: 'present'},
-        {stimulus: [1, 2, 5, 6, 7], probe: 9, trial_type: 'absent'},
-        {stimulus: [0, 1, 3, 5, 8], probe: 8, trial_type: 'present'},
-        {stimulus: [0, 2, 5, 7, 8, 9], probe: 8, trial_type: 'present'},
-        {stimulus: [0, 2, 4, 5], probe: 4, trial_type: 'present'},
-        {stimulus: [0, 1, 2, 4, 7, 8], probe: 2, trial_type: 'present'},
-        {stimulus: [0, 1, 3, 4, 5, 8], probe: 6, trial_type: 'absent'},
-        {stimulus: [2, 3, 5, 6, 7, 9], probe: 4, trial_type: 'absent'},
-        {stimulus: [3, 4, 5, 6], probe: 5, trial_type: 'present'},
-        {stimulus: [0, 3, 4, 5, 7, 8], probe: 8, trial_type: 'present'},
-        {stimulus: [2, 4, 5, 6, 7], probe: 4, trial_type: 'present'},
-        {stimulus: [2, 4, 5, 6, 9], probe: 5, trial_type: 'present'},
-        {stimulus: [3, 4, 6, 8, 9], probe: 2, trial_type: 'absent'},
-        {stimulus: [1, 3, 5, 6, 7, 9], probe: 0, trial_type: 'absent'},
-        {stimulus: [0, 8, 6, 7], probe: 9, trial_type: 'absent'},
-        {stimulus: [0, 2, 3, 7, 8], probe: 6, trial_type: 'absent'},
-        {stimulus: [8, 2, 5], probe: 6, trial_type: 'absent'},
-        {stimulus: [8, 0, 2, 1], probe: 4, trial_type: 'absent'},
-        {stimulus: [0, 2, 5, 7, 8], probe: 3, trial_type: 'absent'},
-        {stimulus: [8, 1, 5, 6], probe: 7, trial_type: 'absent'},
-        {stimulus: [0, 1, 2, 6, 7, 8], probe: 2, trial_type: 'present'},
-        {stimulus: [1, 3, 4, 6, 9], probe: 6, trial_type: 'present'}
-    ];
+        var trials = [];
+
+        function generateSingleTrial() {
+            var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var length = Math.floor((Math.random() * 6) + 1);
+            var sequence = _.sampleSize(digits, length);
+            var present = _.sample([true, false]);
+            var probe;
+            var trial_type;
+
+            if(present === true) {
+                trial_type = 'present';
+                probe = _.sample(sequence);
+            }
+            else if(present !== true) {
+                var difference = [];
+                trial_type = 'absent';
+                jQuery.grep(digits, function(el) {
+                    if (jQuery.inArray(el, sequence) == -1) difference.push(el);
+                });
+                probe = _.sample(difference);
+            };
+            return {stimulus: sequence, probe: probe, trial_type: trial_type};
+        };
+
+        for (var i = 0; i < number; i++) {
+            trials.push(generateSingleTrial());
+        }
+        return trials
+
+    }
+
+    var trials_raw = generateTrials(144);
+
+    var practice_trials = generateTrials(24);
 
     var data = {
 	'trials': shuffleComb(trials_raw),  // items in data.trials are shuffled randomly upon initialization
