@@ -33,6 +33,8 @@ var initPracticeView = function(CPT) {
 
     var probeQuestion = false
 
+    var probe = exp.data.practice_trials[CPT].probe
+
     // shows one digit in the sequence
     function displayDigit(digit) {
         $('#stimulustext').text(stimulus[digit])
@@ -45,8 +47,9 @@ var initPracticeView = function(CPT) {
 
     // shows the probe digit and allow response after specified delay
     function displayProbe(delay) {
-        setTimeout(function() {$('#probe').show()
-                              probeQuestion = true}, delay)
+        setTimeout(function() {$('#stimulustext').text('·')}, delay)
+        setTimeout(function() {$('#stimulustext').text(probe)
+                               probeQuestion = true}, delay + showTime / 2)
     }
 
     // shows one digit and clears display after correct delay
@@ -71,15 +74,16 @@ var initPracticeView = function(CPT) {
     $('#probe').hide()
 
     // make list of indices for stimulus list
-    var digits = [];
+    var sequence = [];
     for (var i = 0; i < stimulus.length; i++) {
-        digits.push(i);
+        sequence.push(i);
     }
 
-    // get time from start
+    // calculate time at start of probe display
     startingTime = Date.now() + probeDelay
-    // show all digits in sequence
-    setTimeout(function() {digits.map(loopDisplay)}, pauseTime)
+
+    // show all digits in sequence after initial pause
+    setTimeout(function() {sequence.map(loopDisplay)}, pauseTime)
 
     // display probe after correct delay
     var probeDelay = pauseTime + stimulus.length * (showTime + blinkTime) + blinkTime + pauseTime

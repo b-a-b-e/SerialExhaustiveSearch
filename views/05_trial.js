@@ -26,6 +26,10 @@ var initTrialView = function(CT) {
 
     var stimulus =  exp.data.trials[CT].stimulus
 
+    var trial_type = exp.data.trials[CT].trial_type
+
+    var probe = exp.data.trials[CT].probe
+
     var probeQuestion = false
 
     // shows one digit in the sequence
@@ -40,8 +44,9 @@ var initTrialView = function(CT) {
 
     // shows the probe digit and allow response after specified delay
     function displayProbe(delay) {
-        setTimeout(function() {$('#probe').show()
-                              probeQuestion = true}, delay)
+        setTimeout(function() {$('#stimulustext').text('x')}, delay)
+        setTimeout(function() {$('#stimulustext').text(probe)
+                               probeQuestion = true}, delay + showTime)
     }
 
     // shows one digit and clears display after correct delay
@@ -49,6 +54,10 @@ var initTrialView = function(CT) {
         setTimeout(function() {displayDigit(digit)}, (showTime + blinkTime) * digit + blinkTime)
         setTimeout(clearDisplay, (showTime + blinkTime) * (digit + 1))
     }
+
+    function feedback(message, delay) {
+        setTimeout(function() {$('#stimulustext').text(message), delay)
+                  }
 
     // listen for key press and record response to probe
     addEventListener('keydown', function(event) {
@@ -68,7 +77,7 @@ var initTrialView = function(CT) {
             probeQuestion = false
             RT = Date.now() - startingTime
             trial_data = {
-                trial_type: "main",
+                trial_type: trial_type,
                 trial_number: CT+1,
                 response: 'k',
                 RT: RT
