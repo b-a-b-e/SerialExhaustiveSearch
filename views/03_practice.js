@@ -11,8 +11,6 @@ var initPracticeView = function(CPT) {
     view.template = $('#practice-view').html();
     $('#main').html(Mustache.render(view.template, {
 	title: config_views.practice.title,
-	stimulustext: '',
-	probe: exp.data.practice_trials[CPT].probe
     }));
 
     // type of trial (present, absent)

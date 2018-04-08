@@ -67,6 +67,8 @@ var initTrialView = function(CT) {
             trial_data = {
                 trial_type: trial_type,
                 trial_number: CT+1,
+                stimulus: stimulus,
+                probe: probe,
                 response: 'd',
                 RT: RT
             }
@@ -79,6 +81,8 @@ var initTrialView = function(CT) {
             trial_data = {
                 trial_type: trial_type,
                 trial_number: CT+1,
+                stimulus: stimulus,
+                probe: probe,
                 response: 'k',
                 RT: RT
             }
