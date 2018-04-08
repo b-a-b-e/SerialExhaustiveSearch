@@ -11,7 +11,17 @@ var initBeginExpView = function() {
 		text: config_views.beginExp.text
 	}));
 
-	showNextView();
+    instructionScreen = true
 
-	return view;
+    addEventListener('keydown', function(event) {
+        if(event.keyCode == 32 && instructionScreen === true) {
+            instructionScreen = false
+            exp.findNextView()
+        }
+    })
+
+
+    showNextView();
+
+    return view;
 };

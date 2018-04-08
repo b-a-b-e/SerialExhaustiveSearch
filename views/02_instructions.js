@@ -18,6 +18,16 @@ var initInstructionsView = function() {
 		button: config_views.instructions.buttonText
 	}));
 
+    instructionScreen = true
+
+        addEventListener('keydown', function(event) {
+        if(event.keyCode == 32 && instructionScreen === true) {
+            instructionScreen = false
+            exp.findNextView()
+        }
+    })
+
+
 	showNextView();
 
 	return view;
