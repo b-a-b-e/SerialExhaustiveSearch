@@ -10,14 +10,14 @@ Experiment structure
 Trial structure
 ---
 - presentation of sequence stimuli (display each digit for 1.2s)
-- presentaiton of test digit (either in sequence or not) (after 2s delay)
+- presentaiton of test digit (either present or absent) (after 2s delay)
 - record response
 
 Response
 ---
-'k' = test digit in sequence
+'d' = test digit in sequence
 
-'d' = test digit not in sequence
+'k' = test digit not in sequence
 
 Data to record
 ---
