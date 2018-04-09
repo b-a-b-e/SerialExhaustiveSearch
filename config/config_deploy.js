@@ -1,12 +1,12 @@
 // user enters information about deployment method here
 var config_deploy = {
-    
+
     // obligatory fields
-    "author": "Random Jane",  // needed to recover data from server app
-    "experiment_id": "MinimalTemplate", // needed to recover data from server app
-    "description": "A minimal template for a browser-based experiment which can be deployed in several ways",
+    "author": "Experimental Psychology Lab",  // needed to recover data from server app
+    "experiment_id": "SerialExhaustiveSearch", // needed to recover data from server app
+    "description": "Replication of Sternberg (1966) experiment 1",
     "deployMethod" : 'debug', // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific',
-    
+
     // optional fields
     "contact_email": "someRandomJanesEmail@randomJoesAndJanes.love", // who to contact in case of trouble
 
