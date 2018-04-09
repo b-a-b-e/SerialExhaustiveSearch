@@ -1,5 +1,5 @@
 # SerialExhaustiveSearch
-Implementation of SES experiment
+Implementation of SES experiment (Sterberg 1966, experiment 1)
 
 Experiment structure
 ---
@@ -15,16 +15,25 @@ Trial structure
 
 Response
 ---
-'d' = test digit in sequence
+'d' = probe digit in sequence
 
-'k' = test digit not in sequence
+'k' = probe digit not in sequence
 
-Data to record
+Data recorded
 ---
-correctness (combination of response and trial-type)
+stimulus sequence
 
-trial type (test digit *present* or *absent*)
+probe digit
 
-reaction time (from display of test digit to response keypress)
+trial type (*present* or *absent*)
 
-position of test digit in sequence
+response (*wasPresent*, *wasAbsent*)
+
+response time (ms)
+
+
+
+Not implemented
+---
+- feedback after each response
+- recall task after
