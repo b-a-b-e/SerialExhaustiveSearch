@@ -2,7 +2,7 @@ config_views.instructions = {
     // instruction's title
     "title": "Instructions",
     // instruction's text
-    "text": "On each trial, a list of numbers will appear for a few moments. Memorize these numbers. Afterwards, a single number will appear. You are to answer whether this number appeared in the list or not. We start with two practice trials.",
+    "text": "During each trial, a sequence of numbers will be displayed, one at a time. Memorize these numbers. After a short pause, a dot followed by a single number will appear. You are to answer whether this number was present in or absent from the sequence. Press D if it was present, and K if it was absent. Try to respond as quickly as possible while maintaining accuracy. The first set of trials are practice trials. Press SPACE to begin the practice trials.",
     // instuction's slide proceeding button text
     "buttonText": "Go to practice trial"
 };
