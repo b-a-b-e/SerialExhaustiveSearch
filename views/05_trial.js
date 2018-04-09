@@ -9,7 +9,6 @@ var initTrialView = function(CT) {
     $('#main').html(Mustache.render(view.template, {
 	title: "d = present, k = absent",
 	stimulustext: '',
-	probe: exp.data.trials[CT].probe
     }));
 
     // type of trial (present, absent)
@@ -99,11 +98,6 @@ var initTrialView = function(CT) {
         setTimeout(function() {displayDigit(digit)}, (showTime + blinkTime) * digit + blinkTime)
         setTimeout(clearDisplay, (showTime + blinkTime) * (digit + 1))
     }
-
-
-
-    // start with probe hidden
-    $('#probe').hide()
 
     // show all digits in sequence
     setTimeout(function() {digits.map(loopDisplay)}, pauseTime)
