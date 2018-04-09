@@ -86,11 +86,10 @@ var initTrialView = function(CT) {
 
     // shows the probe digit and allow response after specified delay
     function displayProbe(delay) {
-        var probeTime = Date.now() + delay + showTime
         setTimeout(function() {$('#stimulustext').text('·')}, delay)
         setTimeout(function() {$('#stimulustext').text(probe)
+                               allowResponse(Date.now())
                                probeQuestion = true}, delay + showTime)
-        setTimeout(function() {allowResponse(probeTime)}, delay + showTime)
     }
 
     // shows one digit and clears display after correct delay
