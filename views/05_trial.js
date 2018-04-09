@@ -52,8 +52,8 @@ var initTrialView = function(CT) {
         var endTime
         addEventListener('keydown', function(event) {
             if(event.keyCode == 68 && probeQuestion === true) {
-                probeQuestion = false
                 endTime = Date.now()
+                probeQuestion = false
                 trial_data = {
                     trial_type: trial_type,
                     trial_number: CT+1,
@@ -66,8 +66,8 @@ var initTrialView = function(CT) {
                 exp.findNextView()
             }
             else if(event.keyCode == 75 && probeQuestion === true) {
-                probeQuestion = false
                 endTime = Date.now()
+                probeQuestion = false
                 trial_data = {
                     trial_type: trial_type,
                     trial_number: CT+1,
@@ -86,9 +86,11 @@ var initTrialView = function(CT) {
 
     // shows the probe digit and allow response after specified delay
     function displayProbe(delay) {
+        var  startTime
         setTimeout(function() {$('#stimulustext').text('·')}, delay)
-        setTimeout(function() {$('#stimulustext').text(probe)
-                               allowResponse(Date.now())
+        setTimeout(function() {startTime = Date.now()
+                               $('#stimulustext').text(probe)
+                               allowResponse(startTime)
                                probeQuestion = true}, delay + showTime)
     }
 
