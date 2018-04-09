@@ -48,11 +48,50 @@ var initTrialView = function(CT) {
         $('#stimulustext').text('')
     }
 
+    // listen for key press and record response time
+    function allowResponse(startTime) {
+        var endTime
+        addEventListener('keydown', function(event) {
+            if(event.keyCode == 68 && probeQuestion === true) {
+                probeQuestion = false
+                endTime = Date.now()
+                trial_data = {
+                    trial_type: trial_type,
+                    trial_number: CT+1,
+                    stimulus: stimulus,
+                    probe: probe,
+                    response: 'wasPresent',
+                    RT: endTime - startTime
+                }
+                exp.data.out.push(trial_data)
+                exp.findNextView()
+            }
+            else if(event.keyCode == 75 && probeQuestion === true) {
+                probeQuestion = false
+                endTime = Date.now()
+                trial_data = {
+                    trial_type: trial_type,
+                    trial_number: CT+1,
+                    stimulus: stimulus,
+                    probe: probe,
+                    response: 'wasAbsent',
+                    RT: endTime - startTime
+                }
+                exp.data.out.push(trial_data)
+                exp.findNextView()
+            }
+        })
+    }
+
+
+
     // shows the probe digit and allow response after specified delay
     function displayProbe(delay) {
+        var probeTime = Date.now() + delay + showTime
         setTimeout(function() {$('#stimulustext').text('·')}, delay)
         setTimeout(function() {$('#stimulustext').text(probe)
                                probeQuestion = true}, delay + showTime)
+        setTimeout(function() {allowResponse(probeTime)}, delay + showTime)
     }
 
     // shows one digit and clears display after correct delay
@@ -61,43 +100,11 @@ var initTrialView = function(CT) {
         setTimeout(clearDisplay, (showTime + blinkTime) * (digit + 1))
     }
 
-    // listen for key press and record response to probe
-    addEventListener('keydown', function(event) {
-        if(event.keyCode == 68 && probeQuestion === true) {
-            probeQuestion = false
-            RT = Date.now() - startingTime
-            trial_data = {
-                trial_type: trial_type,
-                trial_number: CT+1,
-                stimulus: stimulus,
-                probe: probe,
-                response: 'd',
-                RT: RT
-            }
-            exp.data.out.push(trial_data)
-            exp.findNextView()
-        }
-        else if(event.keyCode == 75 && probeQuestion === true) {
-            probeQuestion = false
-            RT = Date.now() - startingTime
-            trial_data = {
-                trial_type: trial_type,
-                trial_number: CT+1,
-                stimulus: stimulus,
-                probe: probe,
-                response: 'k',
-                RT: RT
-            }
-            exp.data.out.push(trial_data)
-            exp.findNextView()
-        }
-    })
+
 
     // start with probe hidden
     $('#probe').hide()
 
-    // get time from start
-    startingTime = Date.now() + probeDelay
     // show all digits in sequence
     setTimeout(function() {digits.map(loopDisplay)}, pauseTime)
 
