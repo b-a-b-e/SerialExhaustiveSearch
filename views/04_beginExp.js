@@ -1,5 +1,5 @@
 config_views.beginExp = {
-    "text": "Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin."
+    "text": "Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin. Press SPACE to begin the experiment."
 };
 
 // creates Begin experiment view
