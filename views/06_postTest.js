@@ -1,21 +1,37 @@
 config_views.postTest = {
     "title": "Additional Info",
-    "text": "Answering the following questions is optional, but will help us understand your answers.",
+    "text": "Please supply your student ID and answer the following questions. Leaving a comment is optional.",
     "buttonText": "Continue"
 };
 
-// creates Post-Test Questionaire View
 var initPostTestView = function() {
 	var view = {};
 	view.name = 'postTest';
 	view.template = $('#post-test-view').html();
-	$('#main').html(Mustache.render(view.template, {
+
+	$('main').html(Mustache.render(view.template, {
 		title: config_views.postTest.title,
-		text: config_views.postTest.text,
-		buttonText: config_views.postTest.buttonText
+		text: config_views.postTest.text
 	}));
 
-	showNextView();
+	$('#next').on('click', function(e) {
+		// prevents the form from submitting
+		e.preventDefault();
+		// records the post test replies
+/*		exp.data.out.push({
+			age: $('#age').val(),
+			gender: $('#gender').val(),
+			education: $('#education').val(),
+			languages: $('#languages').val(),
+			comments: $('#comments').val().trim()
+		});*/
+	        exp.data.out.studentID = $('#studentID').val();
+		exp.data.out.age = $('#age').val();
+		exp.data.out.languages = $('#languages').val();
+		exp.data.out.comments = $('#comments').val().trim();
+		// moves to the next view
+		exp.findNextView();
+	});
 
 	return view;
 };

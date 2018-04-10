@@ -3,7 +3,7 @@ config_views.intro = {
     // introduction title
     "title": "Welcome!",
     // introduction text
-    "text": "Thank you for participating in our study. By answering the following questions, you are participating in a study being performed by scientists from the University of Osnabrück. You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Press SPACE to accept and continue.",
+    "text": "Thank you for participating in this study. In this study we will test your memory. <strong>It is very important that you remain perfectly focused</strong>. Please turn off anything that might disturb you (such as background music, your television, instant messaging, ...). This experiment will last approximately 15 minutes. <br>Press SPACE to continue.",
     // introduction's slide proceeding button text
     "buttonText": "Begin experiment"
 };

@@ -1,5 +1,5 @@
 // create and return an object ('data') where the experiment's info is stored
-// includint a placeholder exp.out in which to store participants' responses
+// include in a placeholder exp.out in which to store participants' responses
 var prepareData = function() {
 
     // this should ideally be read in from a separate file
@@ -85,7 +85,7 @@ exp.findNextView = function() {
 
 // attaches exp.findNextView() function to all the buttons that bring
 // the next view when clicked. Which view should be shown is determined by
-// the conditionals in exp.findNextView() which is located in main.js
+// the conditionals in exp.findNextView() 
 // if the button has id='send-data' (the button in subj info template has it),
 // the data is collected sent before exp.findNextView(); is called
 var showNextView = function() {
@@ -124,5 +124,8 @@ exp.init = function() {
 
     // prepate data
     this.data = prepareData();
+    this.data.startDate = Date();
+    this.data.startTime = Date.now();
+    // this.data.userAgent = window.navigator.userAgent;
 
 };
