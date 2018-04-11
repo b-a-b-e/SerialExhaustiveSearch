@@ -2,8 +2,8 @@
 var config_deploy = {
     
     // obligatory fields
-    "author": "Experimental Psychology Lab",  // needed to recover data from server app
-    "experiment_id": "SerialExhaustiveSearch", // needed to recover data from server app
+    "author": "MichaelFranke",  // needed to recover data from server app
+    "experiment_id": "SerialExhaustiveSearchICNP2018", // needed to recover data from server app
     "description": "Replication of Sternberg (1966) experiment 1",
     "deployMethod" : "directLink", // set deployment method; use one of 'debug', 'localServer', 'MTurk', 'MTurkSandbox', 'Prolific', 'directLink'
     
