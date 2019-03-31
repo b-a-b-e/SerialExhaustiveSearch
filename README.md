@@ -1,5 +1,5 @@
 # SerialExhaustiveSearch
-Implementation of SES experiment (Sternberg 1966 "High-speed scanning in human memory" _Sience_, experiment 1)
+Implementation of SES experiment (Sternberg 1966 "High-speed scanning in human memory" _Science_, experiment 1)
 
 Experiment structure
 ---
