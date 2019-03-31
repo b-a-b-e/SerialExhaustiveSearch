@@ -1,219 +1,40 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="UTF-8" />
-                <title>SES ::: PsychExperiment</title>
+    <head>
+        <meta charset="UTF-8" />
 
-		<!-- fonts from Google fonts -->
-		<!--link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif:400,700|Playfair+Display:700" rel="stylesheet"-->
+        <title>browser-based experiments</title>
 
-		<!-- css -->
-		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <!-- fonts from Google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Noto+Serif:400,700|Playfair+Display:700" rel="stylesheet">
 
-		<!-- js dependencies -->
-		<script src="libraries/mustache/mustache.min.js"></script>
-                <script src="libraries/jquery/dist/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.5/lodash.js"></script>
+        <!-- add babe.css here if you are using babe styles -->
+        <link type="text/css" href="node_modules/babe-project/babe.css" rel="stylesheet" />
 
+        <!-- add js dependencies here -->
+        <!-- for example jQuery and csv-js if you are using babe.js -->
+        <script src="node_modules/lodash/lodash.js"></script> 
 
-                <!-- config -->
-                <script src="config/config_deploy.js"></script>
-                <script src="config/config_general.js"></script>
+        <!-- add babe.full.js or babe.js here -->
+        <script src="node_modules/babe-project/babe.full.js"></script>
 
-		<!-- local js files -->
-                <script src="scripts/main.js"></script>
-                <script src="scripts/helpers.js"></script>
-		<script src="scripts/submit_to_server.js"></script>
+        <!-- load local files -->
+        <script src="trials.js"></script>
+        <script src="custom_views.js"></script>
+        <script src="views.js"></script>
+        <script src="main.js"></script>
+    </head>
 
-                <!-- views -->
-                <script src="views/01_intro.js"></script>
-                <script src="views/02_instructions.js"></script>
-                <script src="views/03_practice.js"></script>
-                <script src="views/04_beginExp.js"></script>
-                <script src="views/05_trial.js"></script>
-                <script src="views/06_postTest.js"></script>
-                <script src="views/07_thanks.js"></script>
+    <body>
+        <!-- display a message for the users that do not use JavaScript -->
+        <noscript>This task requires JavaScript. Please enable JavaScript in your browser and reload the page. For more information on how to do that, please refer to
+            <a href='https://enable-javascript.com' target='_blank'>enable-javascript.com</a>
+        </noscript>
 
-	</head>
+        <!-- views are inserted in main -->
+        <main id='main'>
+            Loading...
+        </main>
 
-	<body>
-		<noscript>This task requires JavaScript. Please enable JavaScript in your browser and reload the page. For more information on how to do that, please refer to
-			<a href='https://enable-javascript.com' target='_blank'>enable-javascript.com</a>
-		</noscript>
-
-		<!-- views are inserted in main -->
-		<main id='main'>
-			Loading...
-		</main>
-
-		<!-- Mustache templates below. Each template is a view with a separate HTML structure. -->
-
-		<!-- Introduction view -->
-		<script id="intro-view" type="x-tmpl-mustache">
-		<div class='view'>
-			{{# title }}
-			<h2 class="title">{{ title }}</h2>
-			{{/ title }}
-			{{# text }}
-			<section class="text-container">
-				<p class="text">{{{ text }}}</p>
-			</section>
-			{{/ text }}
-			<!-- {{# button }} -->
-			<!-- <button class="btn next-view">{{ button }}</button> -->
-			<!-- {{/ button }} -->
-			<!-- {{^ button }} -->
-			<!-- <button class="btn next-view">Begin Experiment</button> -->
-			<!-- {{/ button }} -->
-		</div>
-		</script>
-
-		<!-- Instructions view -->
-		<script id="instructions-view" type="x-tmpl-mustache">
-		<div class="view">
-			{{# title }}
-			<h2>{{ title }}</h2>
-			{{/ title }}
-			{{# text }}
-			<section class="text-container">
-				<p class="text">{{ text }}</p>
-			</section>
-			{{/ text }}
-			<!-- {{# button }} -->
-			<!-- <button class="btn next-view">{{ button }}</button> -->
-			<!-- {{/ button }} -->
-		</view>
-		</script>
-
-		<!-- Practice trial view -->
-		<script id="practice-view" type="x-tmpl-mustache">
-		<div class="view">
-
-		  {{# title }}
-		  <h2>{{ title }}</h2>
-		  {{/ title }}
-
-                  <div class="stimulustext" align="center">
-		    <p style="font-size:50px" class="stimulustext" id="stimulustext"  align="center">
-		      {{# stimulustext }}
-		      {{ stimulustext }}
-		      {{/ stimulustext }}
-		    </p>
-                  </div>
-
-                  <div class="probe", id="probe" align="center">
-		  <p style="font-size:50px" class="probe" align = "center">
-		  {{# probe }}
-		  {{ probe }}
-		  {{/ probe }}
-		  </p>
-
-		</div>
-		</script>
-
-		<!-- Begin Experiment view -->
-		<script id="begin-exp-view" type="x-tmpl-mustache">
-		<div class="view">
-			{{# text }}
-			<section class="text-container">
-				<p class="text">{{ text }}</p>
-			</section>
-			{{/ text }}
-		</div>
-		</script>
-
-		<!-- Trial view (actual experiment) -->
-		<script id="trial-view" type="x-tmpl-mustache">
-		<div class="view">
-
-		  {{# title }}
-		  <h2>{{ title }}</h2>
-		  {{/ title }}
-
-
-                  <div class="stimulustext" align = "center">
-		    <p style="font-size:50px" class="stimulustext" id="stimulustext"  align="center">
-		      {{# stimulustext }}
-		      {{ stimulustext }}
-		      {{/ stimulustext }}
-		    </p>
-                  </div>
-
-                  <div class="probe" id="probe" align="center">
-		  <p style="font-size:50px" class="probe" align = "center">
-		  {{# probe }}
-		  {{ probe }}
-		  {{/ probe }}
-		  </p>
-
-		  </div>
-
-		</script>
-
-	<!-- subject info view -->
-	<script id="post-test-view" type="x-tmpl-mustache">
-	<div class="view post-test-templ">
-		{{# title }}
-		<h2 class="title">{{ title }}</h2>
-		{{/ title }}
-		{{^ title }}
-		<h2 class="title">Additional Information</h2>
-		{{/ title }}
-		{{# text }}
-		<section class="text-container">
-			<p class="text">{{ text }}</p>
-		</section>
-		{{/ text }}
-		<form>
-			<p>
-				<label for="studentID">Student ID:</label>
-				<input type="text" id="studentID" />
-	                </p>
-	  		<p>
-				<label for="age">Age:</label>
-				<input type="number" name="age" min="18" max="110" id="age" />
-			</p>
-
-			<p>
-				<label for="languages" name="languages">Native Languages: <br /><span>(i.e. the language(s) spoken at home when you were a child)</</span></label>
-				<input type="text" id="languages"/>
-			</p>
-			<p class="comment-sect">
-				<label for="comments">Further comments (optional)</label>
-				<textarea name="comments" id="comments"
-				rows="6" cols="40"></textarea>
-			</p>
-			<button id="next">Next</button>
-		</form>
-	</div>
-	</script>
-
-	<!-- Thanks View -->
-	<script id="thanks-view" type="x-tmpl-mustache">
-	<div class="view thanks-templ">
-		<h4 class="warning-message">Please do not close this tab until you see a <strong>&#10004; Submission Successful</strong> message on the screen.</h4>
-		{{# thanksMessage }}
-		<h2 class="thanks-message nodisplay">{{ thanksMessage }}</h2>
-		{{/ thanksMessage }}
-		{{^ thanksMessage }}
-		<h2 class="thanks-message nodisplay">Thank you for taking part in this experiment!</h2>
-		{{/ thanksMessage }}
-		<h4 class="success-message nodisplay"><strong>&#10004; Submission Successful!</strong></h4>
-		{{# extraMessage }}
-		<h4 class="extra-message nodisplay">{{{ extraMessage }}}</h4>
-		{{/ extraMessage }}
-		<form method="post" id="mturk-submission-form" action="{{ mturk_server }}">
-			<input type="hidden" name="assignmentId" value="{{ assignmentId }}" />
-			<input type="hidden" name="startDateTime" value="{{ startDateTime }}" />
-			<input type="hidden" name="totalExpTimeMinutes" value="{{ totalExpTimeMinutes }}" />
-			<input type="hidden" name="userAgent" value="{{ userAgent }}" />
-			<input type="hidden" name="author" value="{{ author }}"/>
-			<input type="hidden" name="experimentId" value="{{ experimentId }}"/>
-			<input type="hidden" name="trials" value="{{ trials }}"/>
-			<input type="hidden" name="description" value="{{ description }}"/>
-			<input type="hidden" name="workerId" value="{{ workerId }}"/>
-		</form>
-	</div>
-	</script>
-	</body>
+    </body>
 </html>
