@@ -35,7 +35,11 @@ function generate_single_trial() {
             probe: probe,
             //trial_type: trial_type, // trial_type is practice or main, `expected` is 'absent' or 'present'
             size: length,
-            probe_position: _.indexOf(sequence, probe)};
+            probe_position: _.indexOf(sequence, probe),
+            show_time: 1200,
+            blink_time: 50,
+            pause_time: 1000
+        };
 };
 
 const key_press_trials = _.map(_.range(n_main_trials), generate_single_trial);

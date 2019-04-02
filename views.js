@@ -101,7 +101,10 @@ const practice_trials = main_trials_constructor({
     name: 'practice_trial',
     data: key_press_practice_trials,
     hook: {
-        after_pause: show_digits
+        after_pause: show_digits,
+        after_fix_point: show_instructions,
+        after_stim_shown: show_nothing,
+        after_stim_hidden: show_probe
     }
 });
 
@@ -111,6 +114,9 @@ const main_trials = main_trials_constructor({
     name: 'main_trial',
     data: key_press_trials,
     hook: {
-        after_pause: show_digits
+        after_pause: show_digits,
+        after_fix_point: show_instructions,
+        after_stim_shown: show_nothing,
+        after_stim_hidden: show_probe
     }
 });
