@@ -25,7 +25,7 @@ const instructions = babeViews.instructions({
     text:  `During each trial, a sequence of numbers will be displayed, one at a time. Memorize these numbers.
     After a short pause, a dot followed by a single number will appear.
     You are to answer whether this number was present in or absent from the sequence.
-    Press F if it was present, and J if it was absent. Try to respond as quickly as possible while maintaining accuracy. The first set of trials are practice trials.`,
+    Press F if it was ${f_content}, and J if it was ${j_content}. Try to respond as quickly as possible while maintaining accuracy. The first set of trials are practice trials.`,
     buttonText: 'Go to practice trials'
 });
 

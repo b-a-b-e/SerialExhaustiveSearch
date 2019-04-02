@@ -1,5 +1,8 @@
 const n_main_trials = 10;
 const n_practice_trials = 5;
+const random_f_j = _.shuffle(['present','absent']);
+const f_content = random_f_j[0];
+const j_content = random_f_j[1];
 
 function generate_single_trial() {
     const digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -28,8 +31,8 @@ function generate_single_trial() {
     return {question: "",
             key1: 'f',
             key2: 'j',
-            f: 'present',
-            j: 'absent',
+            f: f_content,
+            j: j_content,
             expected: expected,
             stimulus: sequence,
             probe: probe,
