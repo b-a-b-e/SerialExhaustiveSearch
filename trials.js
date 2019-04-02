@@ -1,4 +1,4 @@
-const n_main_trials = 10;
+const n_main_trials = 30;
 const n_practice_trials = 5;
 const random_f_j = _.shuffle(['present','absent']);
 const f_content = random_f_j[0];
