@@ -4,20 +4,19 @@ Implementation of SES experiment (Sternberg 1966 "High-speed scanning in human m
 Experiment structure
 ---
 - instructions
-- practice trial x 24
-- main trial x 144
+- practice trial x 5 
+- main trial x 30
 
 Trial structure
 ---
 - presentation of sequence stimuli (display each digit for 1.2s)
-- presentaiton of test digit (either present or absent) (after 2s delay)
+- presentation of test digit (either present or absent) (after 3.45s delay)
 - record response
 
-Response
+Response keys
 ---
-'d' = probe digit in sequence
+keys 'f' and 'j' are mapped randomly onto responses 'present' and 'absent' in the beginning of each experiment 
 
-'k' = probe digit not in sequence
 
 Data recorded
 ---
@@ -25,15 +24,13 @@ stimulus sequence
 
 probe digit
 
-trial type (*present* or *absent*)
+probe position
 
 response (*wasPresent*, *wasAbsent*)
 
 response time (ms)
 
-
-
-Not implemented
+Not implemented from original
 ---
 - feedback after each response
 - recall task after
