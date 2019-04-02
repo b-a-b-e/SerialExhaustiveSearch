@@ -12,35 +12,29 @@
 const intro = babeViews.intro({
     trials: 1,
     name: 'intro',
-    text:   `This is a sample introduction view.
-            <br />
-            <br />
-            The introduction view welcomes the participant and gives general information
-            about the experiment.
-            <br />
-            <br />
-            This is a minimal experiment with two views, one template, one custom made. It can serve as a starting point for programming your own experiment.`,
-    buttonText: 'begin the experiment'
+    text:   `Thank you for participating in this study. In this study we will test your memory.
+    <strong>It is very important that you remain perfectly focused</strong>. Please turn off anything that might disturb you
+    (such as background music, your television, instant messaging, ...). This experiment will last approximately 15 minutes.`,
+    buttonText: 'Begin the experiment'
 });
 
 const instructions = babeViews.instructions({
     trials: 1,
     name: 'instrucions',
-    title: 'General Instructions',
-    text:  `This is a sample instructions view.
-            <br />
-            <br />
-            Tell your participants what they are to do here.`,
-    buttonText: 'go to forced choice trials'
+    title: 'Instructions',
+    text:  `During each trial, a sequence of numbers will be displayed, one at a time. Memorize these numbers.
+    After a short pause, a dot followed by a single number will appear.
+    You are to answer whether this number was present in or absent from the sequence.
+    Press F if it was present, and J if it was absent. Try to respond as quickly as possible while maintaining accuracy. The first set of trials are practice trials.`,
+    buttonText: 'Go to practice trials'
 });
 
-const instructionsPostTest = babeViews.instructions({
+const begin_main = babeViews.begin({
     trials: 1,
-    name: 'instructions_post_test',
-    title: 'Post Questionnaire',
-    text: `Next you will see a sample <a href='/'>Post Test view</a>. 
-    The default questions and answer options are in English, however, the whole questionnaire can be translated. In the following Post Test
-    sample the questions are in German.`
+    name: 'begin_main',
+    title: '',
+    text: `Now that you have acquainted yourself with the procedure of the task, the actual experiment will begin.`,
+    buttonText: 'Go to main trials'
 });
 
 // the post questionnaire can be translated
@@ -48,7 +42,13 @@ const post_test = babeViews.postTest({
     trials: 1,
     name: 'post_test',
     title: 'Additional information',
-    text: 'Answering the following questions is optional, but your answers will help us analyze our results.'
+    text: 'Answering the following questions is optional, except that <strong>you have to enter your student ID if you need course credit.</strong>',
+    languages_question: '<strong>Student ID</strong>',
+    languages_more: '(obligatory for course credit!)',
+    edu_question: 'Study program',
+    edu_graduated_high_school: 'CogSci BSc',
+    edu_graduated_college: 'CogSci MSc',
+    edu_higher_degree: 'other'
 
     // You can change much of what appears here, e.g., to present it in a different language, as follows:
     // buttonText: 'Weiter',
@@ -95,10 +95,22 @@ const thanks = babeViews.thanks({
 
 * All about the properties of trial - https://github.com/babe-project/babe-project/blob/master/docs/views.md#properties-of-trial
 */
+const practice_trials = main_trials_constructor({
+    trials: key_press_practice_trials.length,
+    trial_type: 'practice_trial',
+    name: 'practice_trial',
+    data: key_press_practice_trials,
+    hook: {
+        after_pause: show_digits
+    }
+});
 
 const main_trials = main_trials_constructor({
     trials: key_press_trials.length,
     trial_type: 'main_trial',
     name: 'main_trial',
     data: key_press_trials,
-})
+    hook: {
+        after_pause: show_digits
+    }
+});

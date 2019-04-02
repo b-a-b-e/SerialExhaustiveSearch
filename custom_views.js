@@ -1,3 +1,83 @@
+const show_digits = function(data, next){
+    // ********************
+    // main work (from Noa)
+    // ********************
+
+    const showTime = 1200;  // how long each digit is shown for
+    const blinkTime = 50;   // time between each digit
+    const pauseTime = 1000; // time between stimulus and probe
+    const stimulus =  data.stimulus; // stimulus to show
+    const trial_type = data.trial_type;
+    const probe = data.probe;
+    let probeQuestion = false; // what is this?
+
+    // make list of indices for stimulus list
+    const digits = _.range(stimulus.length);
+    // for (var i = 0; i < stimulus.length; i++) {
+    //     digits.push(i);
+    // }
+
+    const answerContainerElem = `<div class='babe-view-answer-container'>
+                                <p answerContainerElem class='babe-response-keypress-header'
+                                style="font-size:20px;"><strong>${data.key1}</strong> = ${data[data.key1]}, <strong>${data.key2}</strong> = ${data[data.key2]}</p>`;
+    // shows one digit in the sequence
+    function displayDigit(digit) {
+        $('#stimulustext').text(stimulus[digit]);
+    }
+
+    // clears the current digit
+    function clearDisplay() {
+        $('#stimulustext').text('');
+    }
+
+    // shows the probe digit and allow response after specified delay
+    const displayProbe = function(delay) {
+        setTimeout(
+            function() {
+                $('#instructions_text').text('prepare to answer');
+                $('#stimulustext').text('???');
+                $(".babe-view").append(answerContainerElem);
+            },
+            delay);
+        setTimeout(
+            function() {$('#stimulustext').text('');},
+            delay + showTime);
+        setTimeout(
+            function() {
+                $('#stimulustext').text(probe);
+                //enableResponse();
+                probeQuestion = true;
+                next();
+            },
+            delay + showTime * 2);
+    };
+    // shows one digit and clears display after correct delay
+    const loopDisplay = function(digit){
+        setTimeout(
+            function() {displayDigit(digit);},
+            (showTime + blinkTime) * digit + blinkTime
+        );
+        setTimeout(
+            clearDisplay,
+            (showTime + blinkTime) * (digit + 1)
+        );
+    };
+
+    // show all digits in sequence
+    setTimeout(function() {digits.map(loopDisplay);}, pauseTime);
+
+    // display probe after correct delay
+    const probeDelay = pauseTime + stimulus.length * (showTime + blinkTime) + blinkTime + pauseTime;
+
+    displayProbe(probeDelay);
+};
+
+
+
+
+
+
+
 const main_trials_constructor = function(config) {
         babeUtils.view.inspector.missingData(config, "key press");
         babeUtils.view.inspector.params(config, "key press");
@@ -23,79 +103,10 @@ const main_trials_constructor = function(config) {
                         <div class='babe-view-stimulus' style="height:70px;font-size: 50px;" id = 'stimulustext'>XXX</div>
                     </div>
                 </div>`;
-                const answerContainerElem = `<div class='babe-view-answer-container'>
-                                            <p answerContainerElem class='babe-response-keypress-header' style="font-size:20px;"><strong>${key1}</strong> = ${value1}, <strong>${key2}</strong> = ${value2}</p>`;
+
 
                 $("#main").html(viewTemplate);
 
-                // ********************
-                // main work (from Noa)
-                // ********************
-
-                var showTime = 1200;  // how long each digit is shown for
-                var blinkTime = 50;   // time between each digit
-                var pauseTime = 1000; // time between stimulus and probe
-                var stimulus =  config.data[CT].stimulus; // stimulus to show
-                var trial_type = config.data[CT].trial_type;
-                var probe = config.data[CT].probe;
-                var probeQuestion = false; // what is this?
-
-                // make list of indices for stimulus list
-                var digits = _.range(stimulus.length);
-                // for (var i = 0; i < stimulus.length; i++) {
-                //     digits.push(i);
-                // }
-
-                // shows one digit in the sequence
-                function displayDigit(digit) {
-                    $('#stimulustext').text(stimulus[digit]);
-                }
-
-                // clears the current digit
-                function clearDisplay() {
-                    $('#stimulustext').text('');
-                }
-
-                // shows the probe digit and allow response after specified delay
-                const displayProbe = function(delay) {
-                    var  startTime;
-                    setTimeout(
-                        function() {
-                            $('#instructions_text').text('prepare to answer');
-                            $('#stimulustext').text('???');
-                            $(".babe-view").append(answerContainerElem);
-                        },
-                        delay);
-                    setTimeout(
-                        function() {$('#stimulustext').text('');},
-                        delay + showTime);
-                    setTimeout(
-                        function() {
-                            $('#stimulustext').text(probe);
-                            enableResponse();
-                            probeQuestion = true;
-                        },
-                        delay + showTime * 2);
-                };
-                // shows one digit and clears display after correct delay
-                const loopDisplay = function(digit){
-                    setTimeout(
-                        function() {displayDigit(digit);},
-                        (showTime + blinkTime) * digit + blinkTime
-                    );
-                    setTimeout(
-                        clearDisplay,
-                        (showTime + blinkTime) * (digit + 1)
-                    );
-                };
-
-                // show all digits in sequence
-                setTimeout(function() {digits.map(loopDisplay);}, pauseTime);
-
-                // display probe after correct delay
-                var probeDelay = pauseTime + stimulus.length * (showTime + blinkTime) + blinkTime + pauseTime;
-
-                displayProbe(probeDelay);
 
                 const handleKeyPress = function(e) {
 
@@ -132,10 +143,10 @@ const main_trials_constructor = function(config) {
                             }
                         }
 
-                        trial_data[config.data[CT].key1] =
-                            config.data[CT][key1];
-                        trial_data[config.data[CT].key2] =
-                            config.data[CT][key2];
+                        // trial_data[config.data[CT].key1] =
+                        //     config.data[CT][key1];
+                        // trial_data[config.data[CT].key2] =
+                        //     config.data[CT][key2];
 
                         if (config.data[CT].picture !== undefined) {
                             trial_data.picture = config.data[CT].picture;
@@ -179,7 +190,7 @@ const main_trials_constructor = function(config) {
                         evts: config.hook,
                         view: "keyPress"
                     },
-                    // enableResponse
+                    enableResponse
                 );
             },
             CT: 0,
@@ -188,5 +199,3 @@ const main_trials_constructor = function(config) {
 
         return keyPress;
 }
-
- 
