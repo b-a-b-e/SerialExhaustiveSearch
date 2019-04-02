@@ -21,17 +21,16 @@ $("document").ready(function() {
             thanks,
         ],
         deploy: {
-            experimentID: "INSERT_A_NUMBER",
+            experimentid: "49",
             serverAppURL: "https://babe-demo.herokuapp.com/api/submit_experiment/",
             deployMethod: "debug",
-            contact_email: "YOUREMAIL@wherelifeisgreat.you",
+            contact_email: "michael.franke@uni-osnabrueck.de",
             prolificURL: "https://app.prolific.ac/submissions/complete?cc=SAMPLE1234"
         },
         progress_bar: {
             in: [
-                // list the view-names of the views for which you want a progress bar
-                // "task_one",
-                // "task_two"
+                practice_trials,
+                main_trials
             ],
             style: "separate",
             width: 100
