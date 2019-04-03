@@ -1,5 +1,5 @@
-const n_main_trials = 3;
-const n_practice_trials = 1;
+const n_main_trials = 30;
+const n_practice_trials = 5;
 const random_f_j = _.shuffle(['present','absent']);
 const f_content = random_f_j[0];
 const j_content = random_f_j[1];
