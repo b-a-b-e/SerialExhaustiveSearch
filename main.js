@@ -29,8 +29,8 @@ $("document").ready(function() {
         },
         progress_bar: {
             in: [
-                practice_trials,
-                main_trials
+                "practice_trial",
+                "main_trial"
             ],
             style: "separate",
             width: 100
