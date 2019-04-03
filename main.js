@@ -21,7 +21,7 @@ $("document").ready(function() {
             thanks,
         ],
         deploy: {
-            experimentid: "49",
+            experimentID: "49",
             serverAppURL: "https://babe-demo.herokuapp.com/api/submit_experiment/",
             deployMethod: "directLink",
             contact_email: "michael.franke@uni-osnabrueck.de",
