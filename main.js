@@ -23,7 +23,7 @@ $("document").ready(function() {
         deploy: {
             experimentid: "49",
             serverAppURL: "https://babe-demo.herokuapp.com/api/submit_experiment/",
-            deployMethod: "debug",
+            deployMethod: "directLink",
             contact_email: "michael.franke@uni-osnabrueck.de",
             prolificURL: "https://app.prolific.ac/submissions/complete?cc=SAMPLE1234"
         },
